@@ -53,7 +53,7 @@ app.get("/movies", async (req,res) => {
 
 async function readMovieByDirector(directorName){
     try{
-      const movieByDirector = await Movie.findOne({director: directorName});
+      const movieByDirector = await Movie.find({director: directorName});
       return movieByDirector;
     } catch(error){
         throw error
@@ -66,7 +66,7 @@ app.get("/movies/director/:directorName", async (req,res) => {
         if(movies.length != 0){
             res.json(movies);
         } else{
-            res.status(404).json({error: "Movie not found"});
+            res.status(404).json({error: "No movies found"});
         }
     } catch(error){
         res.status(500).json({error: "failed to fetch movie"});
